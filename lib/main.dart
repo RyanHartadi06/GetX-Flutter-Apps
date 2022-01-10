@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:getx/controller/count.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,13 +14,17 @@ class MyApp extends StatelessWidget {
           title: const Text('Get X'),
         ),
         body: Center(
-          child: Text(
-            'Angka 0',
-            style: TextStyle(fontSize: 35),
+            child: GetX<Count>(
+          init: Count(),
+          builder: (controller) => Text(
+            'Angka ${controller.count}',
+            style: const TextStyle(fontSize: 35),
           ),
-        ),
+        )),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.find<Count>().add();
+          },
         ),
       ),
     );
